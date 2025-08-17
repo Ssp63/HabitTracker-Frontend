@@ -1,13 +1,15 @@
 // src/App.jsx
 // NEW: Import the routing components
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 // NEW: Import our page components
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import DashboardPage from './pages/DashboardPage';
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import DashboardPage from "./pages/DashboardPage";
+
+import PrivateRoute from "./components/PrivateRoute";
 
 // This is the new, cleaned-up root component for our application.
 // We've removed all the boilerplate state, effects, and JSX.
@@ -27,7 +29,14 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </main>
     </>
