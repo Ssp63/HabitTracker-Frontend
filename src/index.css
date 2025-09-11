@@ -1,5 +1,54 @@
-/* src/index.css */
+:root {
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-background: #f9fafb;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+  --color-success: #16a34a;
+  --color-error: #dc2626;
 
+  /* FONTS */
+  /* You can add a Google Font import link at the top of this file if you wish */
+  /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-xs: 0.75rem;  /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem;   /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem;  /* 20px */
+  --font-size-2xl: 1.5rem;  /* 24px */
+  --font-size-3xl: 1.875rem;/* 30px */
+
+  /* SPACING */
+  /* A consistent scale for margins, padding, gaps */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+
+  /* BORDERS & SHADOWS */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --box-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --box-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Apply the base styles to the body */
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+/* ... the rest of your existing CSS ... */
 /*
   A modern CSS reset. This provides a consistent baseline to build upon.
 */
@@ -188,3 +237,1322 @@ p {
   border-bottom: 3px solid #3b82f6;
   transition: all 0.2s ease-out;
 }
+
+/* src/index.css */
+
+/* ... your existing styles ... */
+
+/* --- NEW AUTH FORM STYLES --- */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Adds space between form groups */
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #4b5563; /* A slightly softer black */
+}
+
+.form-group input {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db; /* A light grey border */
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6; /* Highlight with our primary blue on focus */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+}
+
+/* src/index.css */
+
+/* ... your existing styles ... */
+
+/* --- NEW HABIT LIST STYLES --- */
+
+.habit-list {
+  display: grid;
+  /* Create responsive columns that work well on all devices */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem; /* The space between the habit items */
+  margin-top: 2rem;
+}
+
+/* Responsive adjustments for habit list */
+@media (max-width: 768px) {
+  .habit-list {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .habit-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Slightly smaller on tablet */
+  }
+}
+
+@media (min-width: 1025px) {
+  .habit-list {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Larger cards on desktop */
+  }
+}
+
+
+
+/* src/index.css */
+
+/* ... your existing styles ... */
+
+/* --- UPDATED & NEW HABIT ITEM STYLES --- */
+
+.habit-item {
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  /* UPDATED: Use relative positioning for proper layout */
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.habit-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* NEW: Style for the clickable content area */
+.habit-item-content {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.5rem;
+  padding-right: 3rem; /* Make space for the delete button */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.habit-item-content:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.habit-info h3 {
+  margin-bottom: 0.25rem; /* Reduced margin */
+  color: #1f2937;
+  font-size: 1.1rem;
+}
+
+.habit-info p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0;
+}
+
+/* --- CUSTOM CHECKBOX STYLES --- */
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none; /* Prevents text from being selected when clicking */
+  font-weight: 500;
+  color: #3b82f6;
+}
+
+/* Hide the default browser checkbox */
+.checkbox-label input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+/* Style the custom checkbox appearance */
+.checkbox-custom {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  border: 2px solid #3b82f6;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+/* Style the checkmark inside the custom checkbox */
+.checkbox-custom::after {
+  content: '';
+  position: absolute;
+  display: none; /* Hidden by default */
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+/* When the real checkbox is checked, update our custom checkbox */
+.checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom {
+  background-color: #3b82f6;
+}
+
+/* When the real checkbox is checked, show the checkmark */
+.checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom::after {
+  display: block;
+}
+
+/* Add a focus ring for accessibility */
+.checkbox-label input[type="checkbox"]:focus ~ .checkbox-custom {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+}
+
+/* Update the track area styling */
+.habit-track {
+  margin-top: var(--spacing-3);
+  padding: 0.75rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.habit-track:hover {
+  background-color: #eef2ff; /* A light blue hover for the tracking area */
+}
+
+/* --- UPDATED HABIT ACTIONS CONTAINER --- */
+.habit-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  align-items: flex-start;
+}
+
+/* --- UPDATED DELETE BUTTON STYLES --- */
+.delete-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #dc2626;
+  background-color: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  padding: 0;
+  z-index: 10;
+}
+
+.delete-button:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+
+.delete-button:hover .delete-icon {
+  filter: brightness(0) invert(1); /* Makes emoji white on hover */
+}
+
+.delete-button:active {
+  transform: scale(0.95);
+}
+
+.delete-button:focus {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
+
+.delete-icon {
+  transition: filter 0.2s ease-in-out;
+}
+
+/* Remove the old habit-item-link class as we're not using it anymore */
+
+
+/* src/index.css */
+
+/* ... your existing styles ... */
+
+/* --- NEW CALENDAR CUSTOMIZATION STYLES --- */
+
+/* 
+  This container will center our calendar on the page and give it 
+  a defined width, preventing it from stretching unpleasantly on large screens.
+*/
+.habit-detail-calendar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* 
+  These are general overrides to make the default react-calendar style 
+  match our application's aesthetic more closely.
+*/
+.react-calendar {
+  width: 100%;
+  max-width: 450px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  font-family: inherit; /* Use the same font as the rest of the app */
+  padding: 1rem;
+}
+
+/* 
+  This is our key style rule. It targets the elements we tagged
+  with the 'habit-completed' class.
+*/
+.habit-completed {
+  /* We use !important here as a pragmatic way to override the library's
+     default background styles, which can have high specificity. */
+  background: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+  We are styling the <abbr> tag inside the completed tile, which contains the day number.
+  This creates the circular highlight effect.
+*/
+.habit-completed abbr {
+  background-color: #22c55e !important; /* A nice, encouraging green */
+  color: white !important;
+  border-radius: 50%; /* Makes the highlight a perfect circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px; /* Defines the size of the circle */
+  height: 32px;
+  font-weight: bold;
+  text-decoration: none !important;
+}
+
+/* 
+  A special style for when a completed day is also the current day.
+  This provides extra visual feedback. The `react-calendar__tile--now`
+  class is automatically applied by the library to today's date.
+*/
+.react-calendar__tile--now.habit-completed abbr {
+  background-color: #16a34a !important; /* A slightly darker, more prominent green */
+}
+
+/* Mobile adjustments for completed day circles */
+@media (max-width: 480px) {
+  .habit-completed abbr {
+    width: 28px;
+    height: 28px;
+    font-size: var(--font-size-sm);
+  }
+}
+
+
+/* src/index.css */
+
+/* ... your existing styles ... */
+
+/* --- NEW STATS DISPLAY STYLES --- */
+
+/* The main grid container for the stat cards */
+.stats-display-container {
+  display: grid;
+  /* Create a responsive grid: 4 columns on large screens, 2 on medium, 1 on small */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem; /* The space between the cards */
+  margin-bottom: 2rem;
+}
+
+/* Individual styling for each stat card */
+.stat-card {
+  background-color: #f9fafb; /* A light grey background */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex; /* Use flexbox to align icon and text */
+  align-items: center; /* Vertically center the content */
+  gap: 1rem; /* Space between the icon and the text block */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+  min-height: 100px; /* Ensure consistent card height */
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the SVG icon container */
+.stat-icon {
+  flex-shrink: 0; /* Prevents the icon from shrinking */
+  width: 48px; /* Increased from 40px */
+  height: 48px; /* Increased from 40px */
+  color: #3b82f6; /* A nice blue for the icons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* Ensure SVG elements fit properly within their container */
+.stat-icon svg {
+  width: 100%;
+  height: 100%;
+  max-width: 32px;
+  max-height: 32px;
+}
+
+/* Container for the text content (value and label) */
+.stat-info {
+  display: flex;
+  flex-direction: column; /* Stack the value on top of the label */
+  min-width: 0; /* Allow text to shrink if needed */
+}
+
+/* Styling for the large number (the stat value) */
+.stat-value {
+  font-size: 2rem; /* Reduced from 2.25rem for better mobile fit */
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.1;
+  word-break: break-word; /* Prevent overflow on small screens */
+}
+
+/* Styling for the descriptive label */
+.stat-label {
+  font-size: 0.875rem; /* 14px */
+  color: #6b7280; /* A softer grey for the label */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* src/index.css */
+
+/* ... your existing styles ... */
+
+/* --- NEW DASHBOARD CHART STYLES --- */
+
+.chart-section {
+  background-color: var(--color-surface);
+  padding: var(--spacing-8);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-md);
+  margin-bottom: var(--spacing-10);
+}
+
+.chart-section h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #374151;
+}
+
+.habit-list-section {
+  margin-top: 2.5rem;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  margin-bottom: 0.25rem;
+}
+
+.page-header p {
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+/* --- BACK BUTTON STYLES --- */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--box-shadow-sm);
+}
+
+.back-button:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow-md);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
+/* Arrow icon styling */
+.back-button::before {
+  content: '←';
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* --- HABIT DETAIL PAGE STYLES --- */
+.habit-detail-header {
+  margin-bottom: var(--spacing-8);
+}
+
+.habit-detail-header .back-button {
+  margin-bottom: var(--spacing-4);
+}
+
+.habit-detail-header .habit-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+}
+
+.habit-detail-header .habit-title-content {
+  flex: 1;
+}
+
+.habit-title {
+  margin-top: 0;
+}
+
+.habit-title-content h2 {
+  margin-bottom: var(--spacing-2);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-3xl);
+}
+
+.habit-title-content p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  margin: 0;
+}
+
+/* --- DELETE BUTTON FOR DETAIL PAGE --- */
+.delete-button-detail {
+  background-color: transparent;
+  border: 2px solid var(--color-error);
+  color: var(--color-error);
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.delete-button-detail:hover {
+  background-color: var(--color-error);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow-md);
+}
+
+.delete-button-detail:active {
+  transform: translateY(0);
+}
+
+.delete-button-detail:focus {
+  outline: 2px solid var(--color-error);
+  outline-offset: 2px;
+}
+
+/* --- RESPONSIVE DESIGN FOR MOBILE DEVICES --- */
+@media (max-width: 768px) {
+  .habit-item {
+    padding: 1rem;
+  }
+  
+  .habit-item-content {
+    padding-right: 2.5rem; /* Less space needed on mobile */
+  }
+  
+  .delete-button {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+  
+  .habit-info h3 {
+    font-size: 1rem;
+  }
+  
+  .habit-info p {
+    font-size: 0.8rem;
+  }
+  
+  .habit-track {
+    margin-top: var(--spacing-2);
+    padding: 0.5rem;
+  }
+  
+  .checkbox-label {
+    font-size: 0.875rem;
+  }
+  
+  .checkbox-custom {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+  }
+  
+  /* Habit detail page mobile adjustments */
+  .habit-detail-header .habit-title {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+  
+  .habit-title-content h2 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .delete-button-detail {
+    align-self: flex-start;
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .habit-item {
+    padding: 0.75rem;
+  }
+  
+  .habit-item-content {
+    padding: 0.25rem;
+    padding-right: 2rem;
+  }
+  
+  .delete-button {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+  
+  .habit-info h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.125rem;
+  }
+  
+  .habit-info p {
+    font-size: 0.75rem;
+  }
+  
+  .habit-track {
+    padding: 0.375rem;
+  }
+  
+  .checkbox-label {
+    font-size: 0.8rem;
+  }
+  
+  .checkbox-custom {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+  }
+  
+  .habit-title-content h2 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .delete-button-detail {
+    padding: var(--spacing-1) var(--spacing-2);
+    font-size: 0.75rem;
+  }
+}
+
+/* --- COMPLETION HISTORY SECTION --- */
+.completion-history-section {
+  margin-top: var(--spacing-8);
+}
+
+.completion-history-title {
+  text-align: center;
+  margin-bottom: var(--spacing-6);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+}
+
+.habit-detail-calendar-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+
+/* src/index.css */
+
+/* ... your existing styles ... */
+
+/* --- NEW CUSTOM TOOLTIP STYLES --- */
+
+.custom-tooltip {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  padding: 10px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-label {
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 5px 0;
+}
+
+.tooltip-intro {
+  margin: 0;
+  color: #1f2937;
+}
+
+/* src/index.css */
+
+/* ... your existing styles ... */
+
+/* --- NEW CHART HEADER AND PERIOD SELECTOR STYLES --- */
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   margin-bottom: var(--spacing-6); 
+}
+
+.chart-header h2 {
+  margin: 0;
+}
+
+.period-selector {
+  display: flex;
+  gap: 0.5rem;
+  background-color: #f3f4f6;
+  padding: 0.25rem;
+  border-radius: 6px;
+}
+
+.period-selector button {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.2s ease-in-out;
+}
+
+.period-selector button:hover {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.period-selector button.active {
+  background-color: #ffffff;
+  color: #3b82f6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chart-loading-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+}
+
+
+/* src/index.css */
+
+/* ... your existing styles ... */
+
+/* --- NEW CREATE HABIT FORM STYLES --- */
+
+/* --- Styles for CreateHabitForm --- */
+
+.create-habit-section {
+  background-color: var(--color-surface); /* Replaced #ffffff */
+  padding: var(--spacing-8);             /* Replaced 2rem */
+  border-radius: var(--border-radius-md);/* Replaced 8px */
+  box-shadow: var(--box-shadow-md);      /* Replaced explicit shadow */
+  margin-bottom: var(--spacing-10);      /* Replaced 2.5rem */
+}
+
+.create-habit-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.create-habit-form h3 {
+  margin-bottom: var(--spacing-4);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xl);
+}
+
+.create-habit-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.create-habit-form label {
+  color: var(--color-text-primary);     /* Replaced #374151 */
+  font-weight: 500;
+  margin-bottom: var(--spacing-2);      /* Replaced 0.5rem */
+}
+
+.create-habit-form input[type="text"],
+.create-habit-form input[type="number"],
+.create-habit-form select {
+  width: 100%;
+  padding: var(--spacing-3);             /* Replaced 0.75rem */
+  border: 1px solid var(--color-border); /* Replaced #d1d5db */
+  border-radius: var(--border-radius-sm);/* Replaced 6px */
+  font-size: var(--font-size-base);      /* Replaced 1rem */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.create-habit-form input:focus,
+.create-habit-form select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.create-habit-form small {
+  color: var(--color-text-secondary);   /* Replaced #6b7280 */
+  font-size: var(--font-size-sm);       /* Replaced 0.875rem */
+  margin-top: var(--spacing-1);
+}
+
+.create-habit-form .form-error {
+  color: var(--color-error);            /* Replaced #ef4444 */
+  background-color: #fee2e2;            /* Can leave this as is or create a --color-error-light */
+  padding: var(--spacing-3);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: var(--spacing-4);
+}
+
+.button-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: var(--spacing-4) var(--spacing-6);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-2);
+  min-height: 48px; /* Good touch target size */
+}
+
+.button-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.button-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.button-primary:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* src/index.css */
+
+/* ... all your other styles, including the media queries above ... */
+
+/* =======================================================
+   3rd Party Library Overrides: react-calendar
+   ======================================================= */
+
+/* The main container for the calendar on the HabitDetailPage */
+.habit-detail-calendar {
+  margin-top: var(--spacing-8);
+}
+
+.react-calendar {
+  /*
+    The most important rule: force the calendar to be fluid.
+    We use `!important` here because library stylesheets are often very specific,
+    and we need to ensure our rule wins. Use it sparingly!
+  */
+  width: 100% !important;
+  max-width: 500px; /* Prevent calendar from getting too wide on large screens */
+  border: none !important;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-md);
+  padding: var(--spacing-4);
+  background: var(--color-surface);
+  font-family: inherit !important;
+  margin: 0 auto; /* Center the calendar */
+}
+
+/* Styling the navigation labels (e.g., "October 2023") */
+.react-calendar__navigation__label {
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary) !important;
+}
+
+/* Styling the navigation buttons */
+.react-calendar__navigation button {
+  color: var(--color-primary) !important;
+  min-width: 44px;
+  min-height: 44px;
+  background: none;
+  font-size: var(--font-size-lg) !important;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+}
+
+/* Styling the individual date tiles */
+.react-calendar__tile {
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-3);
+  transition: background-color 0.2s ease-in-out;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary) !important;
+}
+
+.react-calendar__tile:hover {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+}
+
+/* Your existing highlight class for completed dates */
+.react-calendar__tile.completed-day {
+  background-color: #dcfce7 !important;
+  color: #166534 !important;
+  font-weight: 700;
+}
+
+/* --- Media query specific to the calendar for mobile --- */
+@media (max-width: 480px) {
+  .completion-history-section {
+    margin-top: var(--spacing-6);
+  }
+
+  .completion-history-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .habit-detail-calendar {
+    margin-top: var(--spacing-6);
+  }
+
+  .react-calendar {
+    padding: var(--spacing-2) !important;
+    max-width: 100%; /* Allow full width on mobile */
+  }
+
+  /* Make the tiles a bit smaller to fit on narrow screens */
+  .react-calendar__tile {
+    padding: var(--spacing-2);
+    min-height: 36px;
+    font-size: var(--font-size-sm);
+  }
+
+  /* Make the "M", "T", "W" weekday abbreviations smaller */
+  .react-calendar__month-view__weekdays__weekday abbr {
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+  }
+
+  /* Navigation adjustments for mobile */
+  .react-calendar__navigation {
+    margin-bottom: var(--spacing-2);
+  }
+
+  .react-calendar__navigation button {
+    min-width: 36px;
+    min-height: 36px;
+    font-size: var(--font-size-base) !important;
+  }
+
+  .react-calendar__navigation__label {
+    font-size: var(--font-size-base) !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 768px) and (min-width: 481px) {
+  .completion-history-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .react-calendar {
+    max-width: 450px;
+  }
+}
+
+/* src/index.css */
+
+/* ... all your existing styles ... */
+
+/* =======================================================
+   LOADING SPINNER STYLES
+   ======================================================= */
+
+/* The keyframes animation defines the rotation.
+   It animates the 'transform' property from 0 degrees to 360 degrees. */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* This is the main spinner style. */
+.spinner {
+  width: 40px;
+  height: 40px;
+  /* `border-radius: 50%` turns the square div into a perfect circle. */
+  border-radius: 50%;
+  /* We create a thick, light-gray border... */
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  /* ...but we make the TOP part of the border our primary blue color. */
+  /* This creates the 'pac-man' or 'C' shape that spins. */
+  border-top-color: var(--color-primary);
+  /* We apply our 'spin' animation, telling it to run for 1 second,
+     use a linear timing function, and repeat infinitely. */
+  animation: spin 1s linear infinite;
+}
+
+/* This is a helper class for centering the spinner during a full-page load. */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh; /* Takes up a good portion of the viewport height */
+}
+
+/* This helper is for spinners inside sections, like our chart. */
+.section-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; /* Matches the chart height */
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent overlay */
+  border-radius: var(--border-radius-md);
+}
+
+/* Add this at the end of the spinner styles in src/index.css */
+
+.spinner--small {
+  width: 20px;
+  height: 20px;
+  border-width: 3px;
+}
+
+/* src/index.css */
+
+/* ... all of your existing styles and variables go above ... */
+
+/* ==========================================================================
+   Responsive Media Queries - The Single Source of Truth for Responsiveness
+   ========================================================================== */
+
+/* --- TABLET BREAKPOINT (and smaller) --- */
+/* These rules apply to screens 768px wide or less */
+@media (max-width: 768px) {
+  
+  /* Adjust main container padding for smaller screens */
+  .container {
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+    margin: var(--spacing-4) auto;
+  }
+
+  /*
+    On tablet, the chart header becomes too cramped.
+    We stack the title and the period selector vertically.
+    - `flex-direction: column` changes the main axis from horizontal to vertical.
+    - `align-items: flex-start` aligns the items to the left in the new vertical layout.
+    - `gap` adds space between the stacked title and the selector buttons.
+  */
+  .chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+  }
+
+  /* Make the Create Habit form more compact */
+  .create-habit-section,
+  .chart-section {
+    padding: var(--spacing-6);
+  }
+
+  /* Stats grid becomes 2 columns on tablet */
+  .stats-display-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-3);
+  }
+
+  /* Reduce stat card padding */
+  .stat-card {
+    padding: var(--spacing-4);
+    gap: var(--spacing-3);
+  }
+
+  /* Smaller stat values on tablet */
+  .stat-value {
+    font-size: 1.75rem;
+  }
+}
+
+/* --- MOBILE BREAKPOINT --- */
+/* These more aggressive rules apply to screens 480px wide or less */
+@media (max-width: 480px) {
+
+  /* Further reduce container padding for very narrow screens */
+  .container {
+    padding: var(--spacing-4);
+    margin: var(--spacing-2) auto;
+    width: 95%;
+  }
+
+  /* Make typography slightly smaller to avoid awkward wrapping */
+  body {
+    font-size: 0.95rem;
+  }
+
+  .page-header h1, .chart-section h2, .habit-list-section h2 {
+    font-size: var(--font-size-2xl); /* Was 1.5rem, let's adjust for mobile */
+  }
+
+  /* Ensure period selector buttons don't look too large on mobile */
+  .period-selector button {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Make form inputs and buttons more touch-friendly and readable */
+  .create-habit-form input,
+  .create-habit-form select,
+  .create-habit-form button {
+    font-size: var(--font-size-base); /* Ensure font size is at least 16px for iOS to not auto-zoom */
+  }
+
+  /* On mobile, the habit item's metadata can be a bit much. Stack it. */
+  .habit-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-1);
+    margin-top: var(--spacing-2);
+  }
+
+  /* Make habit items stack vertically on mobile for better touch targets */
+  .habit-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+  }
+
+  .habit-item-content {
+    width: 100%;
+  }
+
+  .habit-track {
+    align-self: flex-end;
+    padding: var(--spacing-3);
+  }
+
+  /* Stats display becomes single column on mobile */
+  .stats-display-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  /* Improve stat card layout for mobile */
+  .stat-card {
+    padding: var(--spacing-4);
+    gap: var(--spacing-4);
+    min-height: 80px;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+  }
+
+  .stat-icon svg {
+    max-width: 28px;
+    max-height: 28px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  /* Habit detail page adjustments */
+  .habit-title h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Navbar adjustments for mobile */
+  .navbar-container {
+    padding: 0 var(--spacing-4);
+  }
+
+  .navbar-logo {
+    font-size: 1.5rem;
+  }
+
+  .nav-links {
+    padding: 0 var(--spacing-2);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Form adjustments */
+  .create-habit-section,
+  .chart-section {
+    padding: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
+  }
+
+  /* Calendar adjustments */
+  .completion-history-section {
+    margin-top: var(--spacing-6);
+  }
+
+  .completion-history-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .habit-detail-calendar-container {
+    margin-top: var(--spacing-6);
+  }
+
+  /* Button adjustments */
+  .button-primary,
+  .back-button {
+    width: 100%;
+    justify-content: center;
+    padding: var(--spacing-4);
+    font-size: var(--font-size-base);
+  }
+
+  /* Chart loading container */
+  .section-loading-container {
+    height: 300px;
+  }
+}
+
+/* --- EXTRA SMALL SCREENS (320px and smaller) --- */
+@media (max-width: 320px) {
+  .container {
+    padding: var(--spacing-2);
+    width: 98%;
+  }
+
+  .stat-card {
+    padding: var(--spacing-3);
+    gap: var(--spacing-2);
+    min-height: 70px;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .habit-item {
+    padding: var(--spacing-3);
+  }
+
+  .create-habit-section,
+  .chart-section {
+    padding: var(--spacing-3);
+  }
+}
+
+@media (min-width: 768px) {
+  .habit-list {
+    /* ...we switch to a two-column grid. */
+    /* `repeat(2, 1fr)` is a shortcut for `1fr 1fr`. */
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-5); /* We can have slightly more space on larger screens */
+  }
+}
+
+/* 3. When the screen is 1024px or WIDER (desktop)... */
+@media (min-width: 1024px) {
+  .habit-list {
+    /* ...we expand to an even more efficient three-column grid. */
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-6);
+  }
+}
+

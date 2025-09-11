@@ -1,20 +1,14 @@
-// src/components/Navbar.jsx
-
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-// NEW: Import our custom useAuth hook
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
-  // NEW: Use the useAuth hook to get the user state and logout function
-  // We no longer need the local `useState` for isLoggedIn.
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    // This will call the logout function from our AuthContext
     logout();
-    // In a future step, this will also clear localStorage and redirect the user.
+    navigate('/', { replace: true });
   };
 
   return (
@@ -24,13 +18,7 @@ function Navbar() {
           HabitTracker
         </Link>
         <ul className="nav-menu">
-          {/* 
-            The conditional rendering logic is now much more meaningful.
-            Instead of checking a mock state, we check if the 'user' object
-            from our global context exists.
-          */}
           {user ? (
-            // Authenticated Links
             <>
               <li className="nav-item">
                 <Link to="/dashboard" className="nav-links">
@@ -44,7 +32,6 @@ function Navbar() {
               </li>
             </>
           ) : (
-            // Guest Links
             <>
               <li className="nav-item">
                 <Link to="/login" className="nav-links">

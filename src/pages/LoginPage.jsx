@@ -1,19 +1,22 @@
 // src/pages/LoginPage.jsx
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import LoginForm from '../components/LoginForm';
+import { useAuth } from '../context/AuthContext';
 
 function LoginPage() {
+  const { user } = useAuth();
+
+  // If already logged in, don't show the login page; redirect to dashboard.
+  if (user) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   return (
     <div className="container auth-page">
       <h2>Login to Your Account</h2>
-      {/* 
-        This form is a placeholder. In a future step, we will add state management,
-        input fields for email and password, and a submit handler.
-      */}
-      <form>
-        <p>Login form will go here.</p>
-        <button type="submit" className="button">Login</button>
-      </form>
+      <LoginForm />
+
       <div className="auth-switch">
         <p>
           Don't have an account? <Link to="/register">Register here</Link>
