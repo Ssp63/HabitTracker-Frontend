@@ -9,8 +9,8 @@ const getBaseURL = () => {
     return 'http://localhost:3000/api';
   }
   
-  // In production, use the environment variable or default Azure URL
-  return import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+  // In production, use the Azure backend URL with localhost fallback
+  return 'https://habit-tracker-api-fndzdyctcgd5bvg3.eastus2-01.azurewebsites.net/api' || 'http://localhost:3000/api';
 };
 
 // Create a new axios instance with a predefined configuration.
