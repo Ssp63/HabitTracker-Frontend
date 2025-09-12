@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Use Azure backend URL directly
 const getBaseURL = () => {
-  return 'https://habit-tracker-api-fndzdyctcgd5bvg3.eastus2-01.azurewebsites.net/api' || 'http://localhost:3000/api';
+  return 'https://habit-tracker-api-fndzdyctcgd5bvg3.eastus2-01.azurewebsites.net/api';
 };
 
 // Create a new axios instance with a predefined configuration.
