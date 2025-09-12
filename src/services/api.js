@@ -2,14 +2,8 @@
 
 import axios from 'axios';
 
-// Determine the base URL based on environment
+// Use Azure backend URL directly
 const getBaseURL = () => {
-  // Check if we're in development mode
-  if (import.meta.env.DEV) {
-    return 'http://localhost:3000/api';
-  }
-  
-  // In production, use the Azure backend URL with localhost fallback
   return 'https://habit-tracker-api-fndzdyctcgd5bvg3.eastus2-01.azurewebsites.net/api' || 'http://localhost:3000/api';
 };
 
