@@ -2,6 +2,17 @@
 
 import axios from 'axios';
 
+// Determine the base URL based on environment
+const getBaseURL = () => {
+  // Check if we're in development mode
+  if (import.meta.env.DEV) {
+    return 'http://localhost:3000/api';
+  }
+  
+  // In production, use the environment variable or default Azure URL
+  return import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+};
+
 // Create a new axios instance with a predefined configuration.
 // This is a best practice for creating a configurable, centralized
 // API layer.
@@ -9,7 +20,7 @@ const api = axios.create({
   // Sets the base URL for all requests made with this instance.
   // Now, instead of writing `axios.post('http://localhost:5000/api/users/login')`,
   // we can just write `api.post('/users/login')`.
-  baseURL: 'http://localhost:3000/api',
+  baseURL: getBaseURL(),
   headers: {
     'Content-Type': 'application/json',
   },
