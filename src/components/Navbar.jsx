@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    const userName = user?.name || 'User';
     logout();
+    toast.success(`Goodbye, ${userName}! You have been logged out successfully.`);
     navigate('/', { replace: true });
   };
 
@@ -15,7 +18,8 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          HabitTracker
+          <img src="/logoH.png" alt="Habitize Logo" className="navbar-logo-img" />
+          <span className="navbar-logo-text">Habitize</span>
         </Link>
         <ul className="nav-menu">
           {user ? (

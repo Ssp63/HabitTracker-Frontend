@@ -6,7 +6,7 @@ function HomePage() {
   return (
     <div className="container">
       <header>
-        <h1>Welcome to Habit Tracker</h1>
+        <h1 className="welcome-title">Welcome to Habitize</h1>
         <p>Your personal tool to build better habits and visualize your progress.</p>
       </header>
       <main>

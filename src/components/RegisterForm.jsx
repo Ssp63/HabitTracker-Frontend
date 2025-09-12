@@ -3,11 +3,14 @@
 import React, { useState } from 'react';
 import authService from '../services/authService';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import Spinner from './Spinner';
 import toast from 'react-hot-toast';
 
 function RegisterForm() {
   // Get the login function from AuthContext
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   // 1. STATE MANAGEMENT:
   // We use a single state object to hold all form data. This is cleaner
@@ -20,7 +23,7 @@ function RegisterForm() {
 
   // Add state for error messages and loading state
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Destructure the values from formData for easier access in the JSX.
   const { name, email, password } = formData;
@@ -35,6 +38,8 @@ function RegisterForm() {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+    // Clear error when user starts typing
+    if (error) setError('');
   };
 
   // 3. ONSUBMIT HANDLER:
@@ -44,7 +49,7 @@ function RegisterForm() {
     
     // Clear any previous errors
     setError('');
-    setLoading(true);
+    setIsLoading(true);
 
     // Here, we'll wrap our API call in a try...catch block to handle
     // potential errors (like a user already existing).
@@ -55,31 +60,53 @@ function RegisterForm() {
 
       // If the registration is successful, the 'responseData' will contain
       // the user object and token from our backend.
-      console.log('Registration successful!', responseData);
-      
-      // Show a success toast message
-      toast.success(`Welcome ${responseData.name}! Registration successful.`);
+      toast.success(`Welcome ${responseData.name}! Account created successfully.`);
       
       // Automatically log the user in and redirect them to the dashboard
       login(responseData);
+      navigate('/dashboard', { replace: true });
 
     } catch (error) {
       // If our authService throws an error, we'll catch it here.
+      let errorMessage = 'Registration failed. Please try again.';
+      
+      if (error.message.toLowerCase().includes('email already exists') || 
+          error.message.toLowerCase().includes('user already exists')) {
+        errorMessage = 'An account with this email already exists. Please try logging in instead.';
+      } else if (error.message.toLowerCase().includes('password')) {
+        errorMessage = 'Password must be at least 6 characters long.';
+      } else if (error.message.toLowerCase().includes('network') || 
+                 error.message.toLowerCase().includes('fetch')) {
+        errorMessage = 'Network error. Please check your internet connection and try again.';
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      toast.error(errorMessage);
+      setError(errorMessage);
       console.error('Registration failed:', error.message);
-      setError(error.message || 'Registration failed. Please try again.');
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
   
   return (
     // We attach our onSubmit handler to the form element itself.
     <form onSubmit={onSubmit} className="auth-form">
+      {/* Error Message */}
       {error && (
-        <div className="error-message" style={{ color: 'red', marginBottom: '1rem' }}>
+        <div className="alert alert-error" style={{
+          color: '#721c24',
+          backgroundColor: '#f8d7da',
+          border: '1px solid #f5c6cb',
+          borderRadius: '4px',
+          padding: '12px',
+          marginBottom: '16px'
+        }}>
           {error}
         </div>
       )}
+
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input
@@ -89,7 +116,7 @@ function RegisterForm() {
           value={name} // The input's value is tied to our state.
           onChange={onChange} // The onChange handler updates the state.
           required
-          disabled={loading}
+          disabled={isLoading}
         />
       </div>
       <div className="form-group">
@@ -101,7 +128,7 @@ function RegisterForm() {
           value={email}
           onChange={onChange}
           required
-          disabled={loading}
+          disabled={isLoading}
         />
       </div>
       <div className="form-group">
@@ -114,11 +141,24 @@ function RegisterForm() {
           onChange={onChange}
           required
           minLength="6" // A simple client-side validation.
-          disabled={loading}
+          disabled={isLoading}
         />
       </div>
-      <button type="submit" className="button" disabled={loading}>
-        {loading ? 'Creating Account...' : 'Create Account'}
+      <button 
+        type="submit" 
+        className="button" 
+        disabled={isLoading}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '8px',
+          opacity: isLoading ? 0.7 : 1,
+          cursor: isLoading ? 'not-allowed' : 'pointer'
+        }}
+      >
+        {isLoading && <Spinner size="small" />}
+        {isLoading ? 'Creating Account...' : 'Create Account'}
       </button>
     </form>
   );

@@ -1,4 +1,4 @@
-# 🎯 HabitTracker Frontend
+# 🎯 Habitize Frontend
 
 A modern, responsive React application for tracking daily habits and visualizing progress over time. Built with React 19, Vite, and deployed on Vercel.
 

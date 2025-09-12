@@ -180,14 +180,28 @@ p {
 }
 
 .navbar-logo {
-  color: #2563eb;
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.75rem;
   display: flex;
   align-items: center;
   font-weight: bold;
+  gap: 14px;
+}
+
+.navbar-logo-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.navbar-logo-text {
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .nav-menu {
@@ -1306,6 +1320,19 @@ p {
   border-width: 3px;
 }
 
+/* Welcome title with gradient */
+.welcome-title {
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 /* src/index.css */
 
 /* ... all of your existing styles and variables go above ... */
@@ -1462,7 +1489,16 @@ p {
   }
 
   .navbar-logo {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .navbar-logo-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .welcome-title {
+    font-size: 2rem;
   }
 
   .nav-links {
