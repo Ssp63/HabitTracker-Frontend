@@ -2,9 +2,18 @@
 
 import axios from 'axios';
 
-// Use Azure backend URL directly
+// Use environment variable for API URL with fallback to production
 const getBaseURL = () => {
-  return 'https://habit-tracker-api-fndzdyctcgd5bvg3.eastus2-01.azurewebsites.net/api';
+  // In development, use local backend if VITE_API_URL is set
+  // In production, fallback to deployed Azure backend
+  const apiUrl = import.meta.env.VITE_API_URL || 'https://habit-tracker-api-fndzdyctcgd5bvg3.eastus2-01.azurewebsites.net/api';
+  
+  // Log the current environment and API URL for debugging
+  if (import.meta.env.DEV) {
+    console.log('🔧 Development Mode - API URL:', apiUrl);
+  }
+  
+  return apiUrl;
 };
 
 // Create a new axios instance with a predefined configuration.

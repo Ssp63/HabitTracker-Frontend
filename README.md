@@ -6,7 +6,21 @@ A modern, responsive React application for tracking daily habits and visualizing
 
 **🚀 [View Live Application](https://habit-tracker-tan-zeta.vercel.app/)**
 
-## 📱 Features
+## � Environment Configuration
+
+This application supports both local development and production environments:
+
+### 🖥️ **Local Development**
+- Uses local backend server: `http://localhost:3000/api`
+- Run with: `npm run dev`
+- Frontend serves on: `http://127.0.0.1:3001`
+
+### 🌐 **Production/Deployment**
+- Uses deployed Azure backend: `https://habit-tracker-api-fndzdyctcgd5bvg3.eastus2-01.azurewebsites.net/api`
+- Automatically configured via environment variables
+- Deployed on Vercel
+
+## �📱 Features
 
 ### 🔐 **Authentication**
 - User registration and login

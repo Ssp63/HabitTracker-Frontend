@@ -8,6 +8,7 @@ import HabitItem from '../components/HabitItem';
 import ProgressChart from '../components/ProgressChart';
 import CreateHabitForm from '../components/CreateHabitForm';
 import Spinner from '../components/Spinner';
+import MigrationHelper from '../components/MigrationHelper';
 
 function DashboardPage() {
   const [habits, setHabits] = useState([]);
@@ -41,20 +42,8 @@ function DashboardPage() {
   // We use a separate useEffect for the chart data. This keeps concerns separate
   // and allows the habit list and chart to load independently.
   useEffect(() => {
-    const fetchChartData = async () => {
-      setIsChartLoading(true); 
-      setChartError(null);
-      try {
-        const data = await habitService.getChartData(period);
-        setChartData(data);
-      } catch (err) {
-        setChartError(err.message);
-      } finally {
-        setIsChartLoading(false);
-      }
-    };
     fetchChartData();
-  }, [period]); // The empty dependency array means this runs once when the component mounts.
+  }, [period]); // The dependency array means this runs when period changes.
 
 
    // This function will be passed down to each HabitItem.
@@ -73,6 +62,22 @@ function DashboardPage() {
   const handleHabitDelete = (habitId) => {
     // Remove the deleted habit from the state
     setHabits(habits.filter((h) => h._id !== habitId));
+    // Refresh chart data to show updated completion data
+    fetchChartData();
+  };
+
+  // Extract chart data fetching to a reusable function
+  const fetchChartData = async () => {
+    setIsChartLoading(true); 
+    setChartError(null);
+    try {
+      const data = await habitService.getChartData(period);
+      setChartData(data);
+    } catch (err) {
+      setChartError(err.message);
+    } finally {
+      setIsChartLoading(false);
+    }
   };
 
   if (isLoading) {
@@ -94,6 +99,9 @@ function DashboardPage() {
         <h2>Welcome, {user?.name}!</h2>
         <p>This is your personal dashboard. Let's track some habits!</p>
       </header>
+
+      {/* Add migration helper for existing users */}
+      <MigrationHelper />
 
      <section className="chart-section">
         <div className="chart-header">

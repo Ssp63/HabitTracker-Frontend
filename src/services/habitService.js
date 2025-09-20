@@ -97,6 +97,32 @@ const deleteHabit = async (habitId) => {
   }
 };
 
+const migrateExistingCompletions = async () => {
+  try {
+    const response = await api.post('/habits/migrate-completions');
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    throw new Error(message);
+  }
+};
+
+const getOverallUserStats = async () => {
+  try {
+    const response = await api.get('/habits/overall-stats');
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    throw new Error(message);
+  }
+};
+
 const habitService = {
   getHabits,
   createHabit,
@@ -105,6 +131,8 @@ const habitService = {
   getHabitStats,
   getChartData,
   deleteHabit,
+  migrateExistingCompletions,
+  getOverallUserStats,
 };
 
 export default habitService;
